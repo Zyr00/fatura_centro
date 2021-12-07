@@ -118,7 +118,7 @@ class BillWindow(QDialog):
             msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
             returnvalue = msg.exec()
             if returnvalue == QMessageBox.Ok:
-                bill.pop(row)
+                entries.pop(row)
                 self.update_list()
         else:
             e = entries[row]
