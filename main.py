@@ -5,8 +5,9 @@ from PyQt5.uic import loadUi
 
 from main_window import Ui_MainWindow
 from bill_window import Ui_BillWindow
+from entry import Entry
 
-bill_is_open = 0
+entries = []
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
@@ -32,26 +33,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         print("Save month")
 
     def addBill(self):
-        if bill_is_open == 0:
+        if BillWindow.bill_is_open == 0:
             self.w = BillWindow()
             self.w.show()
 
 class BillWindow(QMainWindow, Ui_BillWindow):
+    bill_is_open = 0;
+
     def __init__(self, parent=None):
         super().__init__(parent)
-        global bill_is_open
         bill_is_open = 1
         self.setupUi(self)
         self.addEntry.clicked.connect(self.dialog)
 
     def closeEvent(self, event):
-        global bill_is_open
         bill_is_open = 0
         event.accept()
 
     def dialog(self):
         dialog = Dialog(self)
         dialog.exec()
+        print(entries)
 
 class Dialog(QDialog):
     def __init__(self, parent=None):
@@ -60,7 +62,17 @@ class Dialog(QDialog):
         self.dialogOk.clicked.connect(self.ok)
 
     def ok(self):
-        self.close()
+        try:
+            e = Entry(
+                self.linePrice.text(),
+                self.lineCode.text(),
+                self.lineNTires.text(),
+                self.lineSize.text(),
+                self.textDescription.toPlainText())
+            entries.append(e)
+            self.close()
+        except Exception as e:
+            QMessageBox.critical(self, "Erro", f"Erro: {e}")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
