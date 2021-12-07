@@ -12,8 +12,10 @@ from PyQt5.uic import loadUi
 from main_window import Ui_MainWindow
 from bill_window import Ui_BillWindow
 from entry import Entry
+from bill import Bill
 
 entries = []
+bills = []
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
@@ -25,6 +27,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_info.triggered.connect(self.about)
         self.action_exit.triggered.connect(self.close)
         self.buttonAddBill.clicked.connect(self.addBill)
+
+        self.tableWidget.setColumnCount(6)
+        self.tableWidget.setRowCount(len(bills))
+        self.tableWidget.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.tableWidget.setHorizontalHeaderLabels(["Data", "Fornecedor", "Matrícula", "KMs", "Numero Entradas", "Eliminar"])
+        self.tableWidget.cellPressed.connect(self.edit)
 
     def about(self):
         QMessageBox.about(self, "Informação sobre a aplicação",
@@ -52,12 +61,27 @@ class BillWindow(QMainWindow, Ui_BillWindow):
         self.setupUi(self)
         self.addEntry.clicked.connect(self.dialog)
 
+        self.pushOk.clicked.connect(self.closeOk)
+        self.pushCancel.clicked.connect(self.close)
+
         self.tableWidget.setColumnCount(6)
         self.tableWidget.setRowCount(len(entries))
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tableWidget.setHorizontalHeaderLabels(["Preço", "Código", "Numero Pneus", "Tamanho Pneus", "Obs", "Eliminar"])
         self.tableWidget.cellPressed.connect(self.edit)
+
+    def closeOk(self):
+        try:
+            b = Bill(self.dateEdit.date(),
+                    self.lineSupplier.text(),
+                    self.lineRegistry.text(),
+                    self.lineKms.text(), entries)
+            bills.append(b)
+            entries.clear()
+            self.close()
+        except Exception as e:
+            QMessageBox.critical(self, "Erro", f"Erro: {e}")
 
     def closeEvent(self, event):
         bill_is_open = 0
@@ -84,7 +108,6 @@ class BillWindow(QMainWindow, Ui_BillWindow):
             dialog = Dialog(self, row, e.price, e.code, e.ntires, e.size, e.obs)
             dialog.exec()
             self.update_list()
-
 
     def update_list(self):
         self.tableWidget.setRowCount(len(entries))

@@ -29,4 +29,4 @@ class Entry:
         return f"Preço: {self.price}€, Código: {self.code}, Numero Pneus: {self.ntires} Obs: {self.obs}"
 
     def __repr__(self):
-            return str(self)
+        return str(self)
