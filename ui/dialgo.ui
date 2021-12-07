@@ -40,7 +40,7 @@
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="QLineEdit" name="linePrice_2"/>
+      <widget class="QLineEdit" name="lineNTires"/>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
@@ -66,7 +66,7 @@
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QLineEdit" name="linePrice_3"/>
+      <widget class="QLineEdit" name="lineSize"/>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_3">
