@@ -21,8 +21,8 @@ class Bill:
         except:
             raise FormatError("KMs mal formatado tem de ser um numero")
 
-        self.entries = entries
-        if len(entries) == 0:
+        self.entries = list(entries)
+        if len(self.entries) == 0:
             raise FormatError("Sem entradas")
 
     def __str__(self):
