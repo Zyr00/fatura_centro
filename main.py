@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import (QApplication,
         QHeaderView
         )
 from PyQt5.uic import loadUi
+from PyQt5.QtCore import QDate
 
 from main_window import Ui_MainWindow
 from entry import Entry
@@ -33,6 +34,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tableWidget.cellPressed.connect(self.edit)
 
     def addBill(self):
+        entries.clear()
         dialog = BillWindow(self)
         dialog.exec()
         self.update_list()
@@ -79,9 +81,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
 class BillWindow(QDialog):
-    def __init__(self, parent=None, edit=-1, bill=None):
+    def __init__(self, parent=None, edit_pos=-1, bill=None):
         super().__init__(parent)
         loadUi("ui/bill.ui", self)
+        global entries
+
+        self.edit_pos = edit_pos
+        if self.edit_pos != -1 and bill != None:
+            self.lineSupplier.setText(bill.supplier)
+            self.lineRegistry.setText(bill.registration)
+            self.lineKms.setText(bill.kms)
+            qtDate = QDate.fromString(bill.date, 'dd/MM/yyyy')
+            self.dateEdit.setDate(qtDate)
+            entries = bill.entries
+
         self.addEntry.clicked.connect(self.dialog)
         self.pushOk.clicked.connect(self.closeOk)
         self.pushCancel.clicked.connect(self.close)
@@ -91,6 +104,7 @@ class BillWindow(QDialog):
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tableWidget.setHorizontalHeaderLabels(["Preço", "Código", "Numero Pneus", "Tamanho Pneus", "Obs", "Eliminar"])
         self.tableWidget.cellPressed.connect(self.edit)
+        self.update_list()
 
     def closeOk(self):
         try:
@@ -98,10 +112,14 @@ class BillWindow(QDialog):
                     self.lineSupplier.text(),
                     self.lineRegistry.text(),
                     self.lineKms.text(), entries)
-            bills.append(b)
-            entries.clear()
+            if self.edit_pos != -1:
+                bills[self.edit_pos] = b
+            else:
+                bills.append(b)
+                entries.clear()
             self.close()
         except Exception as e:
+            print("I am breaking here")
             QMessageBox.critical(self, "Erro", f"Erro: {e}")
 
     def dialog(self):
