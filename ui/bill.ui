@@ -159,7 +159,7 @@
      </layout>
     </item>
     <item>
-     <widget class="QListView" name="listView"/>
+     <widget class="QTableWidget" name="tableWidget"/>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
@@ -201,7 +201,6 @@
   <tabstop>lineMatricula</tabstop>
   <tabstop>lineMatricula_2</tabstop>
   <tabstop>addEntry</tabstop>
-  <tabstop>listView</tabstop>
   <tabstop>pushButton_2</tabstop>
   <tabstop>pushButton</tabstop>
  </tabstops>
