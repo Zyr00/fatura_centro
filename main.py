@@ -2,6 +2,7 @@ import sys
 
 from PyQt5.QtWidgets import (QApplication,
         QDialog,
+        QFileDialog,
         QMainWindow,
         QMessageBox,
         QTableWidgetItem,
@@ -13,6 +14,7 @@ from PyQt5.QtCore import QDate
 from main_window import Ui_MainWindow
 from entry import Entry
 from bill import Bill
+from files import File
 
 entries = []
 bills = []
@@ -78,6 +80,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def saveMonth(self):
         print("Save month")
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        filename, _ = QFileDialog.getSaveFileName(self, "QFileDialog.getSaveFileName()", "", "Comma-separated values (*.csv)", options=options)
+        if filename:
+            if not filename.lower().endswith('.csv'):
+                filename += '.csv'
+            File.save(filename, bills)
 
 
 class BillWindow(QDialog):
