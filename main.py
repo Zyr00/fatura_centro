@@ -10,7 +10,6 @@ from PyQt5.QtWidgets import (QApplication,
 from PyQt5.uic import loadUi
 
 from main_window import Ui_MainWindow
-from bill_window import Ui_BillWindow
 from entry import Entry
 from bill import Bill
 
@@ -20,20 +19,51 @@ bills = []
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.w = None
         self.setupUi(self)
         self.action_load.triggered.connect(self.loadMonth)
         self.action_save.triggered.connect(self.saveMonth)
         self.action_info.triggered.connect(self.about)
         self.action_exit.triggered.connect(self.close)
         self.buttonAddBill.clicked.connect(self.addBill)
-
         self.tableWidget.setColumnCount(6)
         self.tableWidget.setRowCount(len(bills))
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.tableWidget.setHorizontalHeaderLabels(["Data", "Fornecedor", "Matrícula", "KMs", "Numero Entradas", "Eliminar"])
         self.tableWidget.cellPressed.connect(self.edit)
+
+    def addBill(self):
+        dialog = BillWindow(self)
+        dialog.exec()
+        self.update_list()
+
+    def edit(self, row, col):
+        if col == 5:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setWindowTitle("Eliminar Fatura")
+            msg.setText(f"Eliminar fatura com os valores:\n {bills[row]}")
+            msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+            returnvalue = msg.exec()
+            if returnvalue == QMessageBox.Ok:
+                bills.pop(row)
+                self.update_list()
+        else:
+            b = bills[row]
+            dialog = BillWindow(self, row, b)
+            dialog.exec()
+            self.update_list()
+
+    def update_list(self):
+        self.tableWidget.setRowCount(len(bills))
+        for i in range(len(bills)):
+            b = bills[i]
+            self.tableWidget.setItem(i, 0, QTableWidgetItem(b.date))
+            self.tableWidget.setItem(i, 1, QTableWidgetItem(b.supplier))
+            self.tableWidget.setItem(i, 2, QTableWidgetItem(b.registration))
+            self.tableWidget.setItem(i, 3, QTableWidgetItem(b.kms))
+            self.tableWidget.setItem(i, 4, QTableWidgetItem(str(len(b.entries))))
+            self.tableWidget.setItem(i, 5, QTableWidgetItem("Eliminar"))
 
     def about(self):
         QMessageBox.about(self, "Informação sobre a aplicação",
@@ -47,23 +77,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def saveMonth(self):
         print("Save month")
 
-    def addBill(self):
-        if BillWindow.bill_is_open == 0:
-            self.w = BillWindow()
-            self.w.show()
 
-class BillWindow(QMainWindow, Ui_BillWindow):
-    bill_is_open = 0
-
-    def __init__(self, parent=None):
+class BillWindow(QDialog):
+    def __init__(self, parent=None, edit=-1, bill=None):
         super().__init__(parent)
-        bill_is_open = 1
-        self.setupUi(self)
+        loadUi("ui/bill.ui", self)
         self.addEntry.clicked.connect(self.dialog)
-
         self.pushOk.clicked.connect(self.closeOk)
         self.pushCancel.clicked.connect(self.close)
-
         self.tableWidget.setColumnCount(6)
         self.tableWidget.setRowCount(len(entries))
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
@@ -83,10 +104,6 @@ class BillWindow(QMainWindow, Ui_BillWindow):
         except Exception as e:
             QMessageBox.critical(self, "Erro", f"Erro: {e}")
 
-    def closeEvent(self, event):
-        bill_is_open = 0
-        event.accept()
-
     def dialog(self):
         dialog = Dialog(self)
         dialog.exec()
@@ -101,7 +118,7 @@ class BillWindow(QMainWindow, Ui_BillWindow):
             msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
             returnvalue = msg.exec()
             if returnvalue == QMessageBox.Ok:
-                entries.pop(row)
+                bill.pop(row)
                 self.update_list()
         else:
             e = entries[row]
