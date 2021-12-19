@@ -36,10 +36,15 @@ class File:
                     "Aces Alto Ave Guimarães"
                     ])
 
-        with open(filename, 'w') as file:
-            writer = csv.writer(file)
-            writer.writerow(File.fields)
-            writer.writerows(bill_formated)
+        try:
+            with open(filename, 'w') as file:
+                writer = csv.writer(file)
+                writer.writerow(File.fields)
+                writer.writerows(bill_formated)
+        except:
+            return False
+
+        return True
 
     @staticmethod
     def load(filename):

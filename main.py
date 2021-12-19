@@ -87,7 +87,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if filename:
             if not filename.lower().endswith('.csv'):
                 filename += '.csv'
-            File.save(filename, bills, codes)
+
+            msg = QMessageBox()
+            msg.setWindowTitle("Gravar Ficheiro")
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText(f"Ocorreu um erro ao gravar o ficheiro.")
+
+            if File.save(filename, bills, codes):
+                msg.setIcon(QMessageBox.Information)
+                msg.setText(f"Ficheiro gravado com sucesso com o nome {filename}.")
+
+            msg.exec()
 
 
 class BillWindow(QDialog):
