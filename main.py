@@ -43,7 +43,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.update_list()
 
     def edit(self, row, col):
-        if col == 5:
+        if col == self.tableWidget.columnCount() - 1:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowTitle("Eliminar Fatura")
@@ -119,11 +119,11 @@ class BillWindow(QDialog):
         self.addEntry.clicked.connect(self.dialog)
         self.pushOk.clicked.connect(self.closeOk)
         self.pushCancel.clicked.connect(self.close)
-        self.tableWidget.setColumnCount(6)
+        self.tableWidget.setColumnCount(7)
         self.tableWidget.setRowCount(len(entries))
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.tableWidget.setHorizontalHeaderLabels(["Preço", "Código", "Numero Pneus", "Tamanho Pneus", "Obs", "Eliminar"])
+        self.tableWidget.setHorizontalHeaderLabels(["Preço", "Preço IVA", "Código", "Numero Pneus", "Tamanho Pneus", "Obs", "Eliminar"])
         self.tableWidget.cellPressed.connect(self.edit)
         self.update_list()
 
@@ -140,7 +140,6 @@ class BillWindow(QDialog):
                 entries.clear()
             self.close()
         except Exception as e:
-            print("I am breaking here")
             QMessageBox.critical(self, "Erro", f"Erro: {e}")
 
     def dialog(self):
@@ -149,7 +148,7 @@ class BillWindow(QDialog):
         self.update_list()
 
     def edit(self, row, col):
-        if col == 5:
+        if col == self.tableWidget.columnCount() - 1:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowTitle("Eliminar Entrada")
@@ -170,11 +169,12 @@ class BillWindow(QDialog):
         for i in range(len(entries)):
             e = entries[i]
             self.tableWidget.setItem(i, 0, QTableWidgetItem(e.price))
-            self.tableWidget.setItem(i, 1, QTableWidgetItem(e.code))
-            self.tableWidget.setItem(i, 2, QTableWidgetItem(e.ntires))
-            self.tableWidget.setItem(i, 3, QTableWidgetItem(e.size))
-            self.tableWidget.setItem(i, 4, QTableWidgetItem(e.obs))
-            self.tableWidget.setItem(i, 5, QTableWidgetItem("Eliminar"))
+            self.tableWidget.setItem(i, 1, QTableWidgetItem(e.price_iva))
+            self.tableWidget.setItem(i, 2, QTableWidgetItem(e.code))
+            self.tableWidget.setItem(i, 3, QTableWidgetItem(e.ntires))
+            self.tableWidget.setItem(i, 4, QTableWidgetItem(e.size))
+            self.tableWidget.setItem(i, 5, QTableWidgetItem(e.obs))
+            self.tableWidget.setItem(i, 6, QTableWidgetItem("Eliminar"))
 
 class Dialog(QDialog):
     def __init__(self, parent=None, edit_pos=-1, price=None, code=None, ntires='0', size='0', obs=None):
