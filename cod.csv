@@ -1,0 +1,275 @@
+cod,grupo,des
+1000,Caixa de Velocidades,Caixa de Velocidades Manual - Completa
+1001,Caixa de Velocidades,Caixa de Velocidades Automática - Completa
+1002,Caixa de Velocidades,Mudança de Óleo
+1003,Caixa de Velocidades,Fuga de Óleo
+1004,Caixa de Velocidades,Caixa de Velocidades - Vários
+1005,Caixa de Velocidades,Embraiagem - Completa
+1006,Caixa de Velocidades,Embraiagem - Rolamento de Encosto / Pressão
+1007,Caixa de Velocidades,Embraiagem - Prato
+1008,Caixa de Velocidades,Disco de Embraiagem
+1009,Caixa de Velocidades,Embraiagem - Vários
+1010,Caixa de Velocidades,Apoios
+1011,Caixa de Velocidades,Cabos e Tubos
+1100,Carroçaria e Interior,Portas - Geral
+1101,Carroçaria e Interior,Motor do Limpa-Vidros
+1102,Carroçaria e Interior,Braço do Limpa-Vidros
+1103,Carroçaria e Interior,Escovas Frente
+1104,Carroçaria e Interior,Escovas Traseiro
+1105,Carroçaria e Interior,Escovas Faróis
+1106,Carroçaria e Interior,Depósito da Água do Limpa Vidros
+1107,Carroçaria e Interior,Liquído do Limpa Vidros
+1108,Carroçaria e Interior,Pára-brisas / Escovas - Vários
+1110,Carroçaria e Interior,Carroçaria - Geral
+1111,Carroçaria e Interior,Mecanismo de Abertura das Portas
+1112,Carroçaria e Interior,Fecho Central
+1113,Carroçaria e Interior,Espelho - Esquerdo
+1114,Carroçaria e Interior,Espelho - Direito
+1115,Carroçaria e Interior,Chapa de Matrícula
+1116,Carroçaria e Interior,Velocimetro
+1117,Carroçaria e Interior,Canhão de Ignição
+1118,Carroçaria e Interior,Buzina
+1119,Carroçaria e Interior,Tecto de Abrir
+1120,Carroçaria e Interior,Acessórios de Série
+1121,Carroçaria e Interior,Acessorios não de Série
+1122,Carroçaria e Interior,Vários do Tablier e Interior
+1124,Carroçaria e Interior,Assentos - Vários
+1125,Carroçaria e Interior,Airbag - Condutor
+1127,Carroçaria e Interior,Airbag - Passageiro
+1128,Carroçaria e Interior,Airbag - Sensor
+1129,Carroçaria e Interior,Airbag - Vários
+1130,Carroçaria e Interior,Antena
+1131,Carroçaria e Interior,Comutadores
+1132,Carroçaria e Interior,Depósito de Combustível
+1133,Carroçaria e Interior,Espelho Interior
+1134,Carroçaria e Interior,Farol Dianteiro - Vidro
+1135,Carroçaria e Interior,Farol Dianteiro Completo
+1136,Carroçaria e Interior,Farol Traseiro - Vidro
+1137,Carroçaria e Interior,Farol Traseiro Completo
+1138,Carroçaria e Interior,Frisos Exteriores
+1139,Carroçaria e Interior,Frisos Interiores
+1140,Carroçaria e Interior,Guarda-Lamas
+1141,Carroçaria e Interior,Interruptores Interiores
+1142,Carroçaria e Interior,KIT do Conta-Quilómetros 
+1143,Carroçaria e Interior,Lavagem Exterior
+1144,Carroçaria e Interior,Lavagem Interior
+1145,Carroçaria e Interior,Manete das Velocidades
+1146,Carroçaria e Interior,Manete Travão
+1147,Carroçaria e Interior,Pára-Choques
+1148,Carroçaria e Interior,Pedais
+1149,Carroçaria e Interior,Pintura - Capot
+1150,Carroçaria e Interior,Pintura - Portas
+1151,Carroçaria e Interior,Pintura - Tecto
+1152,Carroçaria e Interior,Pintura - Vários
+1153,Carroçaria e Interior,Quadrante
+1154,Carroçaria e Interior,Serviços de Bate-Chapas
+1155,Carroçaria e Interior,Tapetes
+1156,Carroçaria e Interior,Tubos Depósito de Combustível
+1157,Carroçaria e Interior,Vidro Pára-Brisas
+1158,Carroçaria e Interior,Vidro Traseiro
+1159,Carroçaria e Interior,Vidros Laterais
+1160,Carroçaria e Interior,Volante
+1161,Carroçaria e Interior,Elevador de Vidro - Frt. Esq.
+1162,Carroçaria e Interior,Elevador de Vidro - Frt. Dto.
+1163,Carroçaria e Interior,Elevador de Vidro - Tras. Esq.
+1164,Carroçaria e Interior,Elevador de Vidro - Tras. Dto.
+1165,Carroçaria e Interior,Cinto de Segurança - Frt. Esq.
+1166,Carroçaria e Interior,Cinto de Segurança - Frt. Dto.
+1167,Carroçaria e Interior,Cinto de Segurança - Traseiros
+1168,Carroçaria e Interior,Airbag - Lateral Esq.
+1169,Carroçaria e Interior,Airbag - Lateral Dto.
+1170,Carroçaria e Interior,Fechadura Porta - Frt. Esq.
+1171,Carroçaria e Interior,Fechadura Porta - Frt. Dta.
+1172,Carroçaria e Interior,Fechadura Porta - Traseira
+1173,Carroçaria e Interior,Bomba de água do limpa vidros
+1174,Carroçaria e Interior,Ejetor de água do limpa vidros
+1200,Direcção/Suspensão/Travões,Teste amortecedores
+1201,Direcção/Suspensão/Travões,Bomba da Direcção Assistida
+1202,Direcção/Suspensão/Travões,Direcção - Vários
+1204,Direcção/Suspensão/Travões,Suspensão da Frente - Geral 
+1205,Direcção/Suspensão/Travões,Amortecedor - Frente
+1206,Direcção/Suspensão/Travões,Suspensão Traseira - Geral
+1207,Direcção/Suspensão/Travões,Amortecedor - Trás
+1208,Direcção/Suspensão/Travões,Suspensão - Vários
+1209,Direcção/Suspensão/Travões,Cubo
+1212,Direcção/Suspensão/Travões,Óleo de Travões 
+1213,Direcção/Suspensão/Travões,Travão Frente - Pastilhas 
+1214,Direcção/Suspensão/Travões,Travão Frente - Discos
+1215,Direcção/Suspensão/Travões,Travão Trás - Pastilhas 
+1216,Direcção/Suspensão/Travões,Travão Trás - Discos
+1217,Direcção/Suspensão/Travões,Travão Trás - Tambor
+1218,Direcção/Suspensão/Travões,Travão de Mão 
+1219,Direcção/Suspensão/Travões,ABS 
+1220,Direcção/Suspensão/Travões,Travões - Vários
+1221,Direcção/Suspensão/Travões,Teste de Travões
+1222,Direcção/Suspensão/Travões,Barra da Direcção
+1223,Direcção/Suspensão/Travões,Barra da Suspensão
+1224,Direcção/Suspensão/Travões,Caixa da Direcção
+1225,Direcção/Suspensão/Travões,Casquilhos da Direcção 
+1227,Direcção/Suspensão/Travões,Coluna de Direcção
+1228,Direcção/Suspensão/Travões,Mola da Suspensão
+1230,Direcção/Suspensão/Travões,Rótula da Suspensão
+1231,Direcção/Suspensão/Travões,Triângulo de Suspensão - Frt. Esq.
+1232,Direcção/Suspensão/Travões,Tubagem
+1233,Direcção/Suspensão/Travões,Braço de Suspensão - Frt. Esq.
+1234,Direcção/Suspensão/Travões,Braço de Suspensão - Frt. Dto.
+1235,Direcção/Suspensão/Travões,Braço de Suspensão - Tras. Esq.
+1236,Direcção/Suspensão/Travões,Braço de Suspensão - Tras. Dto.
+1237,Direcção/Suspensão/Travões,Rolamento cubo - Frt. Esq.
+1238,Direcção/Suspensão/Travões,Rolamento cubo - Frt. Dto.
+1239,Direcção/Suspensão/Travões,Rolamento cubo - Tras. Esq.
+1240,Direcção/Suspensão/Travões,Rolamento cubo - Tras. Dto.
+1241,Direcção/Suspensão/Travões,Casquilhos do Amortecedor - Frt.
+1242,Direcção/Suspensão/Travões,Casquilhos do Amortecedor - Tras.
+1243,Direcção/Suspensão/Travões,Mola do Amortecedor - Frt.
+1244,Direcção/Suspensão/Travões,Mola do Amortecedor - Tras.
+1245,Direcção/Suspensão/Travões,Triângulo de Suspensão - Frt. Dto.
+1246,Direcção/Suspensão/Travões,Triângulo de Suspensão - Tras. Esq.
+1247,Direcção/Suspensão/Travões,Triângulo de Suspensão - Tras. Dto.
+1248,Direcção/Suspensão/Travões,Cardan de direção
+1300,Escape,Escape - Completo 
+1301,Escape,Escape - Colector 
+1302,Escape,Escape - Tubo Central 
+1303,Escape,Escape - Tubo Traseiro
+1304,Escape,Escape - Vários 
+1305,Escape,Catalisador 
+1306,Escape,Sonda Lambda
+1307,Escape,Juntas
+1308,Escape,Panela de Escape
+1309,Escape,Ponteira
+1400,Iluminação e AC,Ar Condicionado - Geral 
+1401,Iluminação e AC,Compressor do AC
+1402,Iluminação e AC,Ventoinha do AC 
+1403,Iluminação e AC,Tubos do AC 
+1404,Iluminação e AC,Teste do AC 
+1405,Iluminação e AC,Carga do AC 
+1406,Iluminação e AC,Filtro de Polén 
+1407,Iluminação e AC,Fusível 
+1408,Iluminação e AC,Cablagem
+1409,Iluminação e AC,Luzes - Geral 
+1410,Iluminação e AC,Lâmpadas
+1411,Iluminação e AC,Avisadores Luminosos Especiais
+1412,Iluminação e AC,Iluminação Interior
+1413,Iluminação e AC,Problemas Eléctricos - Vários
+1414,Iluminação e AC,Terminais Eléctricos
+1500,IPO,Inspecção antes de IPO 
+1501,IPO,IPO 
+1502,IPO,Reinspeção IPO
+1600,Manutenção Programada,Manutenção preventiva (revisão)
+1601,Manutenção Programada,Manutenção corretiva (reparação)
+1800,Motor,Mudança de Óleo 
+1801,Motor,Correcção do Nível de Óleo 
+1802,Motor,Correia de Distribuição - Substituição
+1803,Motor,Tensor da Correia de Distribuição 
+1804,Motor,Distribuição - Vários 
+1805,Motor,Motor Completo
+1806,Motor,Motor - Reparação 
+1807,Motor,Suporte do Motor
+1808,Motor,Volante do Motor
+1809,Motor,Bomba de Óleo 
+1810,Motor,Bujão do Carter 
+1811,Motor,Filtro de Óleo
+1812,Motor,Fuga de Óleo
+1813,Motor,Motor - Vários
+1814,Motor,Cabeça do Motor - Completa
+1815,Motor,Rectificação da cabeça
+1816,Motor,Junta da cabeça 
+1817,Motor,Teste de Compressão 
+1818,Motor,Cabeça do Motor - Outros
+1819,Motor,Bomba de Injecção 
+1820,Motor,Injector
+1821,Motor,Tubo dos Injectores 
+1822,Motor,Bomba de Combustível
+1823,Motor,Tubos de Combustível
+1824,Motor,Filtro de Combustível 
+1825,Motor,Cabo do Acelerador
+1826,Motor,Filtro de Ar
+1827,Motor,Caixa do Filtro de Ar 
+1828,Motor,Turbo - Completo
+1829,Motor,EGR - Válvula 
+1830,Motor,Alimentação - Vários
+1831,Motor,GPL - Vários
+1832,Motor,Velas 
+1833,Motor,Cabo de vela
+1834,Motor,Bobine de Ignição 
+1835,Motor,Distribuidor
+1836,Motor,Rotor 
+1837,Motor,Velas de Pré-Aquecimento
+1838,Motor,Ignição - Vários
+1839,Motor,Bateria 
+1840,Motor,Bateria - Vários
+1841,Motor,Alternador - Completo 
+1842,Motor,Alternador - Correia
+1843,Motor,Alternador - Vários 
+1844,Motor,Motor de arranque 
+1845,Motor,Radiador
+1846,Motor,Bomba de água 
+1847,Motor,Termostato
+1848,Motor,Motor do Ventilador 
+1849,Motor,Tubo do Radiador
+1850,Motor,Líquido Anti-Congelante 
+1851,Motor,Refrigeração - Vários
+1852,Motor,Refrigeração - Geral
+1853,Motor,Radiador de Refrigeração
+1854,Motor,Bloco
+1855,Motor,Cabeça do Motor - Vários
+1856,Motor,Carter - Vários
+1857,Motor,Correia de Refrigeração
+1858,Motor,Corrente de Distribuição
+1859,Motor,Electrónica
+1860,Motor,Escovas do Motor de Arranque
+1861,Motor,Filtros Lubricação
+1862,Motor,Jogo de Juntas
+1863,Motor,Junta Carter
+1864,Motor,Lubricação - Vários
+1865,Motor,Motor - Peças
+1866,Motor,Motor de arranque - Vários
+1867,Motor,Pré-Aquecimento - Vários
+1868,Motor,Radiador do Aquecimento
+1869,Motor,Tampão do Radiador
+1870,Motor,Tubos de Refrigeração
+1871,Motor,Tubos do Aquecimento
+1872,Motor,Tubos Lubrificação
+1873,Motor,Turbo - Vários
+1874,Motor,Ventoinha do Radiador
+1875,Motor,Verificação de níveis
+2000,Peritagem,Peritagem - Mecânica
+3000,Pneus,Continental (Pneus novos)
+3001,Pneus,Dunlop (Pneus novos)
+3002,Pneus,Firestone (Pneus novos)
+3003,Pneus,Goodrich (Pneus novos)
+3004,Pneus,Goodyear (Pneus novos)
+3005,Pneus,Kléber (Pneus novos)
+3006,Pneus,Michelin (Pneus novos)
+3007,Pneus,Pirelli (Pneus novos)
+3008,Pneus,Semperit (Pneus novos)
+3009,Pneus,Uniroyal (Pneus novos)
+3010,Pneus,Vredestein (Pneus novos)
+3011,Pneus,Outros (Pneus novos)
+3012,Pneus,Toyo (Pneus novos)
+3013,Pneus,Hankook (Pneus novos)
+3014,Pneus,Mabor (Pneus novos)
+3015,Pneus,Yokohama (Pneus novos)
+3016,Pneus,Gislaved (Pneus novos)
+3017,Pneus,Rotação de pneus
+3018,Pneus,Equilibrio de Rodas 
+3019,Pneus,Reparação de Furos
+3020,Pneus,Alinhamento de Direcção 
+3021,Pneus,Válvula 
+3022,Pneus,ECO Valor 
+3023,Pneus,Serviços de Pneus - Outros
+3024,Pneus,Câmara de Ar
+3025,Pneus,Jante
+3100,Transmissão,Cardan de transmissão
+3101,Transmissão,Diferencial 
+3102,Transmissão,Óleo do Diferencial 
+3103,Transmissão,Transmissão - Vários
+3104,Transmissão,Semi-Eixo
+3105,Transmissão,Transmissão - Motociclos
+3106,Transmissão,Veio de Transmissão
+3200,Quadro - Motociclos,Carenagens
+3201,Quadro - Motociclos,Descanso Lateral
+3202,Quadro - Motociclos,Manetes Motociclos
+3203,Quadro - Motociclos,Plásticos
+3204,Quadro - Motociclos,Quadro
+3205,Quadro - Motociclos,Quadro - Vários

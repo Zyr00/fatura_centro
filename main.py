@@ -2,6 +2,7 @@ import sys
 
 from PyQt5.QtWidgets import (QApplication,
         QDialog,
+        QFileDialog,
         QMainWindow,
         QMessageBox,
         QTableWidgetItem,
@@ -13,9 +14,11 @@ from PyQt5.QtCore import QDate
 from main_window import Ui_MainWindow
 from entry import Entry
 from bill import Bill
+from files import File
 
 entries = []
 bills = []
+codes = []
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
@@ -78,6 +81,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def saveMonth(self):
         print("Save month")
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        filename, _ = QFileDialog.getSaveFileName(self, "QFileDialog.getSaveFileName()", "", "Comma-separated values (*.csv)", options=options)
+        if filename:
+            if not filename.lower().endswith('.csv'):
+                filename += '.csv'
+
+            msg = QMessageBox()
+            msg.setWindowTitle("Gravar Ficheiro")
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText(f"Ocorreu um erro ao gravar o ficheiro.")
+
+            if File.save(filename, bills, codes):
+                msg.setIcon(QMessageBox.Information)
+                msg.setText(f"Ficheiro gravado com sucesso com o nome {filename}.")
+
+            msg.exec()
 
 
 class BillWindow(QDialog):
@@ -185,6 +206,9 @@ class Dialog(QDialog):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+
+    codes = File.load(File.file)
+
     w = MainWindow()
     w.show()
     sys.exit(app.exec())
