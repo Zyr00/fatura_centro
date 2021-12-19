@@ -18,6 +18,7 @@ from files import File
 
 entries = []
 bills = []
+codes = []
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
@@ -86,7 +87,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if filename:
             if not filename.lower().endswith('.csv'):
                 filename += '.csv'
-            File.save(filename, bills)
+            File.save(filename, bills, codes)
 
 
 class BillWindow(QDialog):
@@ -194,6 +195,9 @@ class Dialog(QDialog):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+
+    codes = File.load(File.file)
+
     w = MainWindow()
     w.show()
     sys.exit(app.exec())
