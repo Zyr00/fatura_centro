@@ -1,5 +1,10 @@
 import csv
 
+from PyQt5.QtCore import QDate
+
+from entry import Entry
+from bill import Bill
+
 class File:
     file = "cod.csv"
 
@@ -9,6 +14,7 @@ class File:
             "Código",
             "Grupo",
             "Descrição",
+            "Preço",
             "Km's",
             "Nº de Pneus",
             "Medida de Pneus",
@@ -24,12 +30,14 @@ class File:
             for i in bills:
                 for j in i.entries:
                     group_and_des = File.get_from_code(j.code, codes)
+                    price = float(j.price) * 0.23 + float(j.price)
                     bill_formated.append([
                         i.registration,
                         i.date,
                         j.code,
                         group_and_des[0],
                         group_and_des[1],
+                        str(price),
                         i.kms,
                         j.ntires,
                         j.size,
@@ -46,6 +54,45 @@ class File:
             return False
 
         return True
+
+    @staticmethod
+    def load_bills(filename):
+        bills = []
+        with open(filename, "r") as rawfile:
+            file = csv.DictReader(rawfile)
+            for line in file:
+                b = Bill(
+                    QDate.fromString(line[File.fields[1]], "dd/MM/yyyy"),
+                    line[File.fields[9]],
+                    line[File.fields[0]],
+                    line[File.fields[6]],
+                    [])
+                e = Entry(
+                    line[File.fields[5]],
+                    line[File.fields[2]],
+                    line[File.fields[7]],
+                    line[File.fields[8]],
+                    line[File.fields[10]])
+
+                pos = File.find_in_bill(bills, b)
+                if pos != -1:
+                    bills[pos].entries.append(e)
+                else:
+                    b.entries.append(e)
+                    bills.append(b)
+
+        return bills
+
+    @staticmethod
+    def find_in_bill(bills, b):
+        for i in range(len(bills)):
+            if (b.date == bills[i].date and
+                b.kms == bills[i].kms and
+                b.supplier == bills[i].supplier and
+                b.registration == bills[i].registration):
+                return i
+
+        return -1
 
     @staticmethod
     def load(filename):

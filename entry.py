@@ -4,8 +4,8 @@ class Entry:
     def __init__(self, price, code, ntires, size, obs):
         try:
             price_as_float = float(price);
-            self.price = (price_as_float * 0.23) + price_as_float
-            self.price = str(self.price)
+            # self.price = (price_as_float * 0.23) + price_as_float
+            self.price = str(price_as_float)
         except:
             raise FormatError("Preço mal formatado use . em vez de ,")
 

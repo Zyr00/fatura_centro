@@ -22,11 +22,11 @@ class Bill:
             raise FormatError("KMs mal formatado tem de ser um numero")
 
         self.entries = list(entries)
-        if len(self.entries) == 0:
-            raise FormatError("Sem entradas")
+        #if len(self.entries) == 0:
+        #    raise FormatError("Sem entradas")
 
     def __str__(self):
-        return f"Data {self.date}, Fornecedor {self.supplier}, Matrícula {self.registration}, KMs {self.kms}, numero entradas {self.entries}"
+        return f"Data {self.date}, Fornecedor {self.supplier}, Matrícula {self.registration}, KMs {self.kms}, numero entradas {len(self.entries)}"
 
     def __repr__(self):
         return str(self)
