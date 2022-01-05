@@ -3,10 +3,9 @@ from format_error import FormatError
 class Entry:
     def __init__(self, price, code, ntires, size, obs):
         try:
-            self.price = float(price);
-            self.price_iva = (self.price * 0.23) + self.price
-            self.price = str(self.price)
-            self.price_iva = str(self.price_iva)
+            price_as_float = float(price);
+            # self.price = (price_as_float * 0.23) + price_as_float
+            self.price = str(price_as_float)
         except:
             raise FormatError("Preço mal formatado use . em vez de ,")
 

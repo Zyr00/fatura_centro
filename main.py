@@ -77,10 +77,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
              )
 
     def loadMonth(self):
-        print("Load month")
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        filename, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "", "Comma-separated values (*.csv)", options=options)
+        if filename:
+            msg = QMessageBox()
+            msg.setWindowTitle("A carregar ficheiro ... ")
+            msg.setIcon(QMessageBox.Information)
+            msg.setText(f"A carregar ficheiro: {filename}" )
+
+            global bills
+            bills = File.load_bills(filename)
+            self.update_list()
+
+            msg.exec()
 
     def saveMonth(self):
-        print("Save month")
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
         filename, _ = QFileDialog.getSaveFileName(self, "QFileDialog.getSaveFileName()", "", "Comma-separated values (*.csv)", options=options)
@@ -168,13 +180,13 @@ class BillWindow(QDialog):
         self.tableWidget.setRowCount(len(entries))
         for i in range(len(entries)):
             e = entries[i]
-            self.tableWidget.setItem(i, 0, QTableWidgetItem(e.price))
-            self.tableWidget.setItem(i, 1, QTableWidgetItem(e.price_iva))
-            self.tableWidget.setItem(i, 2, QTableWidgetItem(e.code))
-            self.tableWidget.setItem(i, 3, QTableWidgetItem(e.ntires))
-            self.tableWidget.setItem(i, 4, QTableWidgetItem(e.size))
-            self.tableWidget.setItem(i, 5, QTableWidgetItem(e.obs))
-            self.tableWidget.setItem(i, 6, QTableWidgetItem("Eliminar"))
+            price = float(e.price) * 0.23 + float(e.price)
+            self.tableWidget.setItem(i, 0, QTableWidgetItem(str(price)))
+            self.tableWidget.setItem(i, 1, QTableWidgetItem(e.code))
+            self.tableWidget.setItem(i, 2, QTableWidgetItem(e.ntires))
+            self.tableWidget.setItem(i, 3, QTableWidgetItem(e.size))
+            self.tableWidget.setItem(i, 4, QTableWidgetItem(e.obs))
+            self.tableWidget.setItem(i, 5, QTableWidgetItem("Eliminar"))
 
 class Dialog(QDialog):
     def __init__(self, parent=None, edit_pos=-1, price=None, code=None, ntires='0', size='0', obs=None):
