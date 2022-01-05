@@ -43,7 +43,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.update_list()
 
     def edit(self, row, col):
-        if col == 5:
+        if col == self.tableWidget.columnCount() - 1:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowTitle("Eliminar Fatura")
@@ -131,11 +131,11 @@ class BillWindow(QDialog):
         self.addEntry.clicked.connect(self.dialog)
         self.pushOk.clicked.connect(self.closeOk)
         self.pushCancel.clicked.connect(self.close)
-        self.tableWidget.setColumnCount(6)
+        self.tableWidget.setColumnCount(7)
         self.tableWidget.setRowCount(len(entries))
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.tableWidget.setHorizontalHeaderLabels(["Preço", "Código", "Numero Pneus", "Tamanho Pneus", "Obs", "Eliminar"])
+        self.tableWidget.setHorizontalHeaderLabels(["Preço", "Preço IVA", "Código", "Numero Pneus", "Tamanho Pneus", "Obs", "Eliminar"])
         self.tableWidget.cellPressed.connect(self.edit)
         self.update_list()
 
@@ -152,7 +152,6 @@ class BillWindow(QDialog):
                 entries.clear()
             self.close()
         except Exception as e:
-            print("I am breaking here")
             QMessageBox.critical(self, "Erro", f"Erro: {e}")
 
     def dialog(self):
@@ -161,7 +160,7 @@ class BillWindow(QDialog):
         self.update_list()
 
     def edit(self, row, col):
-        if col == 5:
+        if col == self.tableWidget.columnCount() - 1:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setWindowTitle("Eliminar Entrada")
