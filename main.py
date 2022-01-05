@@ -180,8 +180,7 @@ class BillWindow(QDialog):
         self.tableWidget.setRowCount(len(entries))
         for i in range(len(entries)):
             e = entries[i]
-            price = float(e.price) * 0.23 + float(e.price)
-            self.tableWidget.setItem(i, 0, QTableWidgetItem(str(price)))
+            self.tableWidget.setItem(i, 0, QTableWidgetItem(e.price))
             self.tableWidget.setItem(i, 1, QTableWidgetItem(e.code))
             self.tableWidget.setItem(i, 2, QTableWidgetItem(e.ntires))
             self.tableWidget.setItem(i, 3, QTableWidgetItem(e.size))

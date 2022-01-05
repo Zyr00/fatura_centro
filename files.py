@@ -30,14 +30,13 @@ class File:
             for i in bills:
                 for j in i.entries:
                     group_and_des = File.get_from_code(j.code, codes)
-                    price = float(j.price) * 0.23 + float(j.price)
                     bill_formated.append([
                         i.registration,
                         i.date,
                         j.code,
                         group_and_des[0],
                         group_and_des[1],
-                        str(price),
+                        j.price,
                         i.kms,
                         j.ntires,
                         j.size,
@@ -50,7 +49,8 @@ class File:
                 writer = csv.writer(file)
                 writer.writerow(File.fields)
                 writer.writerows(bill_formated)
-        except:
+        except Exception as e:
+            print(e)
             return False
 
         return True
@@ -68,7 +68,7 @@ class File:
                     line[File.fields[6]],
                     [])
                 e = Entry(
-                    line[File.fields[5]],
+                    (float(line[File.fields[5]]) / 123) * 100,
                     line[File.fields[2]],
                     line[File.fields[7]],
                     line[File.fields[8]],
