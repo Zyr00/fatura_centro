@@ -82,13 +82,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         filename, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "", "Comma-separated values (*.csv)", options=options)
         if filename:
             msg = QMessageBox()
-            msg.setWindowTitle("A carregar ficheiro ... ")
+            msg.setWindowTitle("Carregar ficheiro")
             msg.setIcon(QMessageBox.Information)
-            msg.setText(f"A carregar ficheiro: {filename}" )
+            msg.setText(f"Ficheiro carregado com sucesso" )
 
             global bills
-            bills = File.load_bills(filename)
-            self.update_list()
+
+            try:
+                bills = File.load_bills(filename)
+                if len(bills) == 0:
+                    msg.setStandardButtons(QMessageBox.Ok)
+                    msg.setIcon(QMessageBox.Information)
+                    msg.setText(f"Sem informação." )
+                else:
+                    self.update_list()
+            except:
+                msg.setStandardButtons(QMessageBox.Ok)
+                msg.setIcon(QMessageBox.Critical)
+                msg.setText(f"Ocurreu um erro ao carregar o ficherio (Mal Formatado)." )
 
             msg.exec()
 
