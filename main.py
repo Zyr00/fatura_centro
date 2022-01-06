@@ -24,6 +24,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+        self.setWindowTitle("Faturas Carros Centro de Saúde")
         self.action_load.triggered.connect(self.loadMonth)
         self.action_save.triggered.connect(self.saveMonth)
         self.action_info.triggered.connect(self.about)
@@ -79,7 +80,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def loadMonth(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        filename, _ = QFileDialog.getOpenFileName(self, "QFileDialog.getOpenFileName()", "", "Comma-separated values (*.csv)", options=options)
+        filename, _ = QFileDialog.getOpenFileName(self, "Carregar Ficheiro", "", "Comma-separated values (*.csv)", options=options)
         if filename:
             msg = QMessageBox()
             msg.setWindowTitle("Carregar ficheiro")
@@ -99,14 +100,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             except:
                 msg.setStandardButtons(QMessageBox.Ok)
                 msg.setIcon(QMessageBox.Critical)
-                msg.setText(f"Ocurreu um erro ao carregar o ficherio (Mal Formatado)." )
+                msg.setText(f"Ocorreu um erro ao carregar o ficheiro (Mal Formatado)." )
 
             msg.exec()
 
     def saveMonth(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        filename, _ = QFileDialog.getSaveFileName(self, "QFileDialog.getSaveFileName()", "", "Comma-separated values (*.csv)", options=options)
+        filename, _ = QFileDialog.getSaveFileName(self, "Gravar Ficheiro", "" ,"Comma-separated values (*.csv)", options=options)
         if filename:
             if not filename.lower().endswith('.csv'):
                 filename += '.csv'
@@ -128,6 +129,7 @@ class BillWindow(QDialog):
     def __init__(self, parent=None, edit_pos=-1, bill=None):
         super().__init__(parent)
         loadUi("ui/bill.ui", self)
+        self.setWindowTitle("Adicionar nova fatura")
         global entries
 
         self.edit_pos = edit_pos
@@ -138,15 +140,17 @@ class BillWindow(QDialog):
             qtDate = QDate.fromString(bill.date, 'dd/MM/yyyy')
             self.dateEdit.setDate(qtDate)
             entries = bill.entries
+        else:
+            self.dateEdit.setDate(QDate.currentDate())
 
         self.addEntry.clicked.connect(self.dialog)
         self.pushOk.clicked.connect(self.closeOk)
         self.pushCancel.clicked.connect(self.close)
-        self.tableWidget.setColumnCount(7)
+        self.tableWidget.setColumnCount(6)
         self.tableWidget.setRowCount(len(entries))
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.tableWidget.setHorizontalHeaderLabels(["Preço", "Preço IVA", "Código", "Numero Pneus", "Tamanho Pneus", "Obs", "Eliminar"])
+        self.tableWidget.setHorizontalHeaderLabels(["Preço IVA", "Código", "Numero Pneus", "Tamanho Pneus", "Obs", "Eliminar"])
         self.tableWidget.cellPressed.connect(self.edit)
         self.update_list()
 
@@ -202,6 +206,7 @@ class Dialog(QDialog):
     def __init__(self, parent=None, edit_pos=-1, price=None, code=None, ntires='0', size='0', obs=None):
         super().__init__(parent)
         loadUi("ui/dialgo.ui", self)
+        self.setWindowTitle("Adicionar nova entrada")
         self.dialogOk.clicked.connect(self.ok)
         self.linePrice.setText(price)
         self.lineCode.setText(code)

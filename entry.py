@@ -25,7 +25,7 @@ class Entry:
         self.obs = obs
 
     def __str__(self):
-        return f"Preço: {self.price}€,\nPreço IVA: {self.price_iva}\nCódigo: {self.code},\nNumero Pneus: {self.ntires},\nObs: {self.obs}"
+        return f"Preço IVA: {self.price}€\nCódigo: {self.code},\nNumero Pneus: {self.ntires},\nObs: {self.obs}"
 
     def __repr__(self):
         return str(self)
