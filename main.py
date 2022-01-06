@@ -140,6 +140,8 @@ class BillWindow(QDialog):
             qtDate = QDate.fromString(bill.date, 'dd/MM/yyyy')
             self.dateEdit.setDate(qtDate)
             entries = bill.entries
+        else:
+            self.dateEdit.setDate(QDate.currentDate())
 
         self.addEntry.clicked.connect(self.dialog)
         self.pushOk.clicked.connect(self.closeOk)
