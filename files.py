@@ -45,10 +45,11 @@ class File:
                         "Aces Alto Ave Guimarães"
                         ])
 
-            with open(filename, 'w') as file:
-                writer = csv.writer(file)
+            with open(filename, 'w', newline='') as file:
+                writer = csv.writer(file, delimiter=',')
                 writer.writerow(File.fields)
                 writer.writerows(bill_formated)
+
         except Exception as e:
             print(e)
             return False
@@ -58,28 +59,31 @@ class File:
     @staticmethod
     def load_bills(filename):
         bills = []
-        with open(filename, "r") as rawfile:
-            file = csv.DictReader(rawfile)
-            for line in file:
-                b = Bill(
-                    QDate.fromString(line[File.fields[1]], "dd/MM/yyyy"),
-                    line[File.fields[9]],
-                    line[File.fields[0]],
-                    line[File.fields[6]],
-                    [])
-                e = Entry(
-                    (float(line[File.fields[5]]) / 123) * 100,
-                    line[File.fields[2]],
-                    line[File.fields[7]],
-                    line[File.fields[8]],
-                    line[File.fields[10]])
+        try:
+            with open(filename, "r", encoding='utf8') as rawfile:
+                file = csv.DictReader(rawfile)
+                for line in file:
+                    b = Bill(
+                        QDate.fromString(line[File.fields[1]], "dd/MM/yyyy"),
+                        line[File.fields[9]],
+                        line[File.fields[0]],
+                        line[File.fields[6]],
+                        [])
+                    e = Entry(
+                        (float(line[File.fields[5]]) / 123) * 100,
+                        line[File.fields[2]],
+                        line[File.fields[7]],
+                        line[File.fields[8]],
+                        line[File.fields[10]])
 
-                pos = File.find_in_bill(bills, b)
-                if pos != -1:
-                    bills[pos].entries.append(e)
-                else:
-                    b.entries.append(e)
-                    bills.append(b)
+                    pos = File.find_in_bill(bills, b)
+                    if pos != -1:
+                        bills[pos].entries.append(e)
+                    else:
+                        b.entries.append(e)
+                        bills.append(b)
+        except:
+            raise FormatError("Ficheiro mal formatado")
 
         return bills
 
@@ -97,7 +101,7 @@ class File:
     @staticmethod
     def load(filename):
         content = []
-        with open(filename, "r") as file:
+        with open(filename, "r", encoding='utf8') as file:
             csvfile = csv.DictReader(file)
             for line in csvfile:
                 content.append(dict(line))
