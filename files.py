@@ -46,7 +46,7 @@ class File:
                         ])
 
             with open(filename, 'w', newline='') as file:
-                writer = csv.writer(file, delimiter=',')
+                writer = csv.writer(file, delimiter=';')
                 writer.writerow(File.fields)
                 writer.writerows(bill_formated)
 
@@ -61,7 +61,7 @@ class File:
         bills = []
         try:
             with open(filename, "r", encoding='utf8') as rawfile:
-                file = csv.DictReader(rawfile)
+                file = csv.DictReader(rawfile, delimiter=';')
                 for line in file:
                     b = Bill(
                         QDate.fromString(line[File.fields[1]], "dd/MM/yyyy"),
